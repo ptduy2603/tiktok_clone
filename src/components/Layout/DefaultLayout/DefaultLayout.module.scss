@@ -1,0 +1,15 @@
+.wrapper {
+    margin-top: var(--header-height);
+}
+
+.container {
+    width: var(--inner-header-width);
+    min-height: 1000px;
+    display: flex;
+    margin: 0 auto;
+}
+
+.content {
+    flex: 1; // chiếm hết khoảng không còn lại sau khi đã fix cứng width của sidebar
+    min-height: 100vh;
+}
