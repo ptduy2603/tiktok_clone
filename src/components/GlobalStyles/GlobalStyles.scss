@@ -5,6 +5,7 @@
     // declare variables
     --primary-color: #fe2c55;
     --text-color: #161823;
+    --black : #000;
     --white-color: #fff;
     --header-height: 60px;
     --inner-header-width: 1150px;
@@ -12,11 +13,11 @@
 
 html {
     font-size: 62.5%;
+    scroll-behavior: smooth;
 }
 
 * {
-    list-style: none;
-    text-decoration: none;
+    list-style: none;  
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -27,4 +28,21 @@ body {
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
+    color: var(--text-color);
+}
+
+.btn:active {
+    transform: scale(0.95);
+    transition: all ease-in 0.1s;
+}
+
+button, input , [tabindex]
+{
+    outline: none;
+    border: none;
+}
+
+a[href] {
+    color: var(--text-color);
+    text-decoration: none;
 }

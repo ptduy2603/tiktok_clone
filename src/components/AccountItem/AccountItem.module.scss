@@ -1,0 +1,52 @@
+$checkIconColor: rgb(32, 213, 236);
+
+.search-item {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 6px 16px;
+    user-select: none;
+
+    &:hover {
+        background-color: rgba(24, 25, 35, 0.05);
+        transition: all ease-in 0.15s;
+    }
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    margin-right: 12px;
+}
+
+.user-information {
+    flex: 1;
+}
+
+.user-information > div {
+    display: flex;
+    align-items: center;
+}
+
+.name {
+    font-size: 1.4rem;
+}
+
+.nickname {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.username {
+    font-size: 1.4rem;
+    color: rgba(22, 24, 35, 0.5);
+}
+
+.check-icon {
+    margin-left: 6px;
+    color: $checkIconColor;
+}
