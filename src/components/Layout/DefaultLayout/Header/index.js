@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react'; // react
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faSpinner, faMagnifyingGlass, faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
+import {
+    faCircleXmark,
+    faSpinner,
+    faMagnifyingGlass,
+    faEllipsisVertical,
+    faPlus,
+} from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import 'tippy.js/dist/tippy.css'; // optional
@@ -10,6 +16,7 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
 import AccountItem from '~/components/AccountItem/';
+import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
 
@@ -18,8 +25,9 @@ function Header() {
     const [searchResult, setSearchResult] = useState([]);
 
     useEffect(() => {
+        // load trang call API để lấy các kết quả được tìm kiếm và set lại cho mảng kết quả
         setTimeout(() => {
-            
+            setSearchResult([1, 2, 3]);
         }, 0);
     }, []);
 
@@ -75,8 +83,13 @@ function Header() {
 
                 {/* options section */}
                 <div className={cx('header__options')}>
-                    <div className={cx('upload')}>{/* Icon add */} Tải lên</div>
-                    <button className={cx('btn-login')}>Đăng nhập</button>
+                    <Link to="/upload">
+                        <Button outline className={cx('btnUpload')}>
+                            <FontAwesomeIcon icon={faPlus} />
+                            <span>Upload</span>
+                        </Button>
+                    </Link>
+                    <Button primary>Login</Button>
                     <FontAwesomeIcon icon={faEllipsisVertical} className={cx('header__options-more')} />
                 </div>
             </div>

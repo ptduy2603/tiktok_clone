@@ -113,18 +113,54 @@ $top-space: 10px;
     color: #a7a7ab;
 }
 
-.loading {
-    display: none;
-}
-
 .search:has(> .header__search-input:not(:placeholder-shown)) ~ .btn-search {
     color: rgba(22, 24, 35, 0.75);
 }
 
-// search-result CSS 
+// search-result CSS
 .search-title {
-    color: rgba(22,24,35,0.5);
+    color: rgba(22, 24, 35, 0.5);
     font-size: 1.4rem;
     font-weight: 600;
     padding: 6px 12px;
+}
+
+//options section CSS
+.header__options {
+    display: flex;
+    min-width: 270px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+a.btnUpload {
+    color: var(--text-color);
+    padding: 0 16px;
+    border-color: rgba(22, 24, 35, 0.12);
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 2px;
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+
+    & > span > svg {
+        display: inline-block;
+        margin-right: 8px;
+    }
+
+    &:hover {
+        background-color: rgba(22, 24, 35, .03);
+        border-color: rgba(22, 24, 35, 0.12);
+    }
+}
+
+.header__options-more {
+    display: block;
+    width: 20px;
+    height: 20px;
+    color: var(--text-color);
+    font-weight: unset;
+    cursor: pointer;
+    margin-left: 8px;
 }
