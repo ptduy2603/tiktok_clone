@@ -69,3 +69,11 @@
     min-width: 140px;
     padding: 14px 16px;
 }
+
+.wrapper:has(svg + .content) .content {
+    margin-left: 16px;
+}
+
+.wrapper:has(.content + svg) .content {
+    margin-right: 16px;
+}

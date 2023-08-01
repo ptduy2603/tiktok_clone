@@ -6,6 +6,9 @@ import {
     faMagnifyingGlass,
     faEllipsisVertical,
     faPlus,
+    faEarthAsia,
+    faCircleQuestion,
+    faMoon,
 } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
@@ -17,8 +20,34 @@ import styles from './Header.module.scss';
 import images from '~/assets/images';
 import AccountItem from '~/components/AccountItem/';
 import Button from '~/components/Button';
+import Menu from '~/components/Popper/Menu';
+import { faKeyboard } from '@fortawesome/free-regular-svg-icons';
 
 const cx = classNames.bind(styles);
+
+// all items showed in more menu
+const MENU_ITEMS = [
+    {
+        icon: <FontAwesomeIcon icon={faEarthAsia} className={cx('menu-icon')}></FontAwesomeIcon>,
+        content : "Language",
+    },
+
+    {
+        icon: <FontAwesomeIcon icon={faCircleQuestion} className={cx('menu-icon')}></FontAwesomeIcon>,
+        content : "Feedback and help",
+        link : "/feedback"
+    },
+
+    {
+        icon : <FontAwesomeIcon icon={faKeyboard} className={cx('menu-icon')}></FontAwesomeIcon>,
+        content : "Keyboard shortcuts"
+    },
+
+    {
+        icon : <FontAwesomeIcon icon={faMoon} className={cx('menu-icon')}></FontAwesomeIcon>,
+        content : "Night mode"
+    }
+]
 
 function Header() {
     // states
@@ -90,7 +119,12 @@ function Header() {
                         </Button>
                     </Link>
                     <Button primary>Login</Button>
-                    <FontAwesomeIcon icon={faEllipsisVertical} className={cx('header__options-more')} />
+
+                    <Menu items={MENU_ITEMS}>
+                        <button className={cx('more-btn')}>
+                            <FontAwesomeIcon icon={faEllipsisVertical} className={cx('header__options-more')} />
+                        </button>
+                    </Menu>
                 </div>
             </div>
         </header>

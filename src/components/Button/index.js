@@ -11,6 +11,8 @@ function Button({
     to,
     href,
     children,
+    leftIcon,
+    rightIcon,
     disabled,
     className,
     icon,
@@ -48,7 +50,9 @@ function Button({
 
     return (
         <Component className={classes} {...props}>
-            <span>{children}</span>
+            {leftIcon}
+            <span className={cx('content')}>{children}</span>
+            {rightIcon}
         </Component>
     );
 }

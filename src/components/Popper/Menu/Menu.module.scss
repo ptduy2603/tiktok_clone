@@ -1,0 +1,30 @@
+//menu
+.menu-list {
+    min-width: 224px;
+    user-select: none;
+    cursor: pointer;    
+}
+
+.menu-popper {
+    padding: 8px 0;
+}
+
+.menu-item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    color: rgb(22, 24, 35);
+    padding: 10px 8px 10px 16px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 2.1rem;
+    letter-spacing: 0.03px;
+
+    & + .menu-item {
+        margin-left: 0;
+    }
+
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+}
