@@ -9,11 +9,19 @@ import {
     faEarthAsia,
     faCircleQuestion,
     faMoon,
+    faCloudUpload,
+    faUser,
+    faCoins,
+    faGear,
+    faRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons';
+import { faKeyboard } from '@fortawesome/free-regular-svg-icons';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import 'tippy.js/dist/tippy.css'; // optional
-import Tippy from '@tippyjs/react/headless';
+import Tippy from '@tippyjs/react/';
+import HeadlessTippy from '@tippyjs/react/headless';
+import 'tippy.js/dist/tippy.css';
 
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import styles from './Header.module.scss';
@@ -21,33 +29,55 @@ import images from '~/assets/images';
 import AccountItem from '~/components/AccountItem/';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
-import { faKeyboard } from '@fortawesome/free-regular-svg-icons';
 
 const cx = classNames.bind(styles);
+const currentUser = true;
 
-// all items showed in more menu
+// all items will be showed at menu-options
 const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faEarthAsia} className={cx('menu-icon')}></FontAwesomeIcon>,
-        content : "Language",
+        content: 'Language',
+        children: {
+            title: 'Language',
+            data: [
+                {
+                    type: 'language',
+                    code: 'en',
+                    content: 'English',
+                },
+
+                {
+                    type: 'language',
+                    code: 'vi',
+                    content: 'Vietnamese',
+                },
+
+                {
+                    type: 'language',
+                    code: 'jpy',
+                    content: 'Japanese',
+                },
+            ],
+        },
     },
 
     {
         icon: <FontAwesomeIcon icon={faCircleQuestion} className={cx('menu-icon')}></FontAwesomeIcon>,
-        content : "Feedback and help",
-        link : "/feedback"
+        content: 'Feedback and help',
+        link: '/feedback',
     },
 
     {
-        icon : <FontAwesomeIcon icon={faKeyboard} className={cx('menu-icon')}></FontAwesomeIcon>,
-        content : "Keyboard shortcuts"
+        icon: <FontAwesomeIcon icon={faKeyboard} className={cx('menu-icon')}></FontAwesomeIcon>,
+        content: 'Keyboard shortcuts',
     },
 
     {
-        icon : <FontAwesomeIcon icon={faMoon} className={cx('menu-icon')}></FontAwesomeIcon>,
-        content : "Night mode"
-    }
-]
+        icon: <FontAwesomeIcon icon={faMoon} className={cx('menu-icon')}></FontAwesomeIcon>,
+        content: 'Night mode',
+    },
+];
 
 function Header() {
     // states
@@ -59,6 +89,39 @@ function Header() {
             setSearchResult([1, 2, 3]);
         }, 0);
     }, []);
+
+    // handler functions
+    const handleMenuChange = (menuItem) => {
+        console.log(menuItem);
+    };
+
+    const userMenu = [
+        {
+            icon: <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>,
+            content: 'View profile',
+            link: '/profile',
+        },
+
+        {
+            icon: <FontAwesomeIcon icon={faCoins} />,
+            content: 'Get coins',
+            link: '/coin',
+        },
+
+        {
+            icon: <FontAwesomeIcon icon={faGear} />,
+            content: 'Setting',
+            link: '/settings',
+        },
+
+        ...MENU_ITEMS,
+
+        {
+            icon: <FontAwesomeIcon icon={faRightFromBracket} />,
+            content: 'Log out',
+            link: '/',
+        },
+    ];
 
     // return JSX
     return (
@@ -73,7 +136,7 @@ function Header() {
 
                 {/* searchBox section */}
                 <div className={cx('header__search')}>
-                    <Tippy
+                    <HeadlessTippy
                         visible={searchResult.length > 0}
                         interactive
                         render={(attrs) => (
@@ -103,27 +166,46 @@ function Header() {
                             </button>
                             <FontAwesomeIcon icon={faSpinner} className={cx('loading')} />
                         </div>
-                    </Tippy>
+                    </HeadlessTippy>
 
                     <button className={cx('btn-search', 'btn')}>
                         <FontAwesomeIcon icon={faMagnifyingGlass} />
                     </button>
                 </div>
 
-                {/* options section */}
                 <div className={cx('header__options')}>
-                    <Link to="/upload">
-                        <Button outline className={cx('btnUpload')}>
-                            <FontAwesomeIcon icon={faPlus} />
-                            <span>Upload</span>
-                        </Button>
-                    </Link>
-                    <Button primary>Login</Button>
+                    {currentUser ? (
+                        <>
+                            <Tippy content="Upload video" placement="bottom" delay={[0, 200]}>
+                                <button className={cx('option-btn')}>
+                                    <FontAwesomeIcon icon={faCloudUpload}></FontAwesomeIcon>
+                                </button>
+                            </Tippy>
+                        </>
+                    ) : (
+                        <>
+                            <Link to="/upload">
+                                <Button outline className={cx('btnUpload')}>
+                                    <FontAwesomeIcon icon={faPlus} />
+                                    <span>Upload</span>
+                                </Button>
+                            </Link>
+                            <Button primary>Login</Button>
+                        </>
+                    )}
 
-                    <Menu items={MENU_ITEMS}>
-                        <button className={cx('more-btn')}>
-                            <FontAwesomeIcon icon={faEllipsisVertical} className={cx('header__options-more')} />
-                        </button>
+                    <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
+                        {currentUser ? (
+                            <img
+                                src="https://p16-sign-useast2a.tiktokcdn.com/tos-useast2a-avt-0068-giso/3af03eb78f9e2548e5ab82075dd78c51~c5_100x100.jpeg?x-expires=1690707600&x-signature=hmEsaxKkPSfjlTU1Z7gd0pESSZg%3D"
+                                className={cx('user-login-avatar')}
+                                alt=""
+                            ></img>
+                        ) : (
+                            <button className={cx('more-btn')}>
+                                <FontAwesomeIcon icon={faEllipsisVertical} className={cx('header__options-more')} />
+                            </button>
+                        )}
                     </Menu>
                 </div>
             </div>

@@ -4,6 +4,7 @@ $search-box-border: rgba(22, 24, 35, 0.12);
 $search-box-width: 400px;
 $search-height: 46px;
 $top-space: 10px;
+$userAvatarSize: 32px;
 
 .header {
     height: var(--header-height);
@@ -17,6 +18,7 @@ $top-space: 10px;
 
 .inner {
     height: 100%;
+    padding: 0 var(--header-layout-horizontal-space);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -128,8 +130,6 @@ $top-space: 10px;
 //options section CSS
 .header__options {
     display: flex;
-    min-width: 270px;
-    justify-content: space-between;
     align-items: center;
 }
 
@@ -150,12 +150,12 @@ a.btnUpload {
     }
 
     &:hover {
-        background-color: rgba(22, 24, 35, .03);
+        background-color: rgba(22, 24, 35, 0.03);
         border-color: rgba(22, 24, 35, 0.12);
     }
 }
 
- .more-btn{
+.more-btn {
     display: block;
     width: 20px;
     font-size: 2rem;
@@ -167,3 +167,21 @@ a.btnUpload {
     background-color: transparent;
 }
 
+// CSS header khi đã login
+.option-btn {
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 2.2rem;
+    color: rgb(22, 24, 35);
+    padding: 4px 12px;
+    margin-right: 12px;
+}
+
+.user-login-avatar {
+    width: $userAvatarSize;
+    height: $userAvatarSize;
+    cursor: pointer;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}

@@ -16,6 +16,7 @@ const publicRouters = [
     { path: '/profile', component: Profile },
     { path: '/upload', component: Upload, layout: HeaderOnly },
     { path: '/search', component: Search, layout: null },
+    { path: '/feedback', component: Search, layout: null },
 ];
 
 // dùng cho những trang cần đăng nhập mới xem được

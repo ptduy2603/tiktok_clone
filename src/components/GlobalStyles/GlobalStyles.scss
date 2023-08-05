@@ -9,6 +9,7 @@
     --white-color: #fff;
     --header-height: 60px;
     --inner-header-width: 1150px;
+    --header-layout-horizontal-space : 24px;
 }
 
 html {
@@ -45,4 +46,26 @@ button, input , [tabindex]
 a[href] {
     color: var(--text-color);
     text-decoration: none;
+}
+
+// custom tippy tooltip
+body .tippy-box {
+    border-radius: 8px;
+    background-color: rgba(84,84,84,0.92);
+    font-weight: 600;
+    line-height: 2rem;
+    font-size: 1.6rem;
+    pointer-events: all;
+}
+
+.tippy-content {
+    display: flex;
+    align-items: center;
+    padding: 8px 9px;
+}
+
+.tippy-arrow::before {
+    color: rgba(84,84,84,0.92);
+    transform-origin: center bottom;
+    top: -8px;
 }

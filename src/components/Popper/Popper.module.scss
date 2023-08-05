@@ -9,3 +9,8 @@
     max-height: min((100vh - 96px) - 60px, 734px);
     overflow: auto;
 }
+
+// CSS nâng cao
+.wrapper a:has(svg[data-icon|='right-from-bracket']) {
+    border-top: 1px solid rgba(22,24,35,0.12);
+}
