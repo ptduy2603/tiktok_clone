@@ -1,0 +1,115 @@
+$search-box-color: #f1f1f2;
+$search-box-border: rgba(22, 24, 35, 0.12);
+$search-box-width: 400px;
+$search-height: 46px;
+$top-space: 10px;
+
+.header__search {
+    background-color: $search-box-color;
+    height: $search-height;
+    width: $search-box-width;
+    padding: 0 0 0 16px;
+    border-radius: 92px;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+
+    &-input {
+        font-size: 1.6rem;
+        font-weight: 400;
+        line-height: 2.1rem;
+        letter-spacing: 0.03px;
+        background-color: transparent;
+        padding: 12px 0;
+        color: var(--black);
+        caret-color: var(--primary-color);
+        flex: 1;
+    }
+
+    &:hover,
+    &:focus-within {
+        border: solid 2px $search-box-border;
+    }
+
+    &:hover .btn-search {
+        background-color: rgba(0, 0, 0, 0.06);
+        color: rgba(22, 24, 35, 0.75);
+    }
+}
+
+.search {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-result {
+    width: $search-box-width;
+    margin-right: -36px;
+}
+
+.btn-search {
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    width: 60px;
+    cursor: pointer;
+    background: transparent;
+    padding: 11px 16px 11px 12px;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    color: $search-box-border;
+
+    &:hover {
+        background-color: rgba(20, 24, 35, 0.04);
+    }
+
+    &::before {
+        content: '';
+        width: 1px;
+        height: calc($search-height - $top-space * 2);
+        background-color: $search-box-border;
+        position: absolute;
+        left: 0;
+    }
+}
+
+.loading,
+.btn-clear-input {
+    font-size: 1.6rem;
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a7a7ab;
+}
+
+.search:has(> .header__search-input:not(:placeholder-shown)) ~ .btn-search {
+    color: rgba(22, 24, 35, 0.75);
+}
+
+// search-result CSS
+.search-title {
+    color: rgba(22, 24, 35, 0.5);
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 6px 12px;
+}
+
+@keyframes Rotate {
+    from {
+        transform:translateY(-50%) rotate(0) ;
+    }
+    to {
+        transform:translateY(-50%) rotate(360deg);
+    }
+}
+
+.loading {
+    animation: Rotate linear 1s infinite;
+}
+

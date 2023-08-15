@@ -30,7 +30,6 @@ function Menu({ children, items = [], onChange = defaultFunction }) {
             return (
                 <MenuItem
                     item={item}
-                    key={index}
                     onClick={() => {
                         if (isParent) {
                             // nếu có chứa menu con thì set lại State và re-render lại menu con
@@ -51,6 +50,7 @@ function Menu({ children, items = [], onChange = defaultFunction }) {
             offset={[12, 8]}
             placement="bottom-end"
             delay={[0, 600]}
+            hideOnClick="false"
             render={(attrs) => (
                 <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
                     <PopperWrapper className={cx('menu-popper')}>

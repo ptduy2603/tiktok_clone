@@ -17,6 +17,7 @@ function Button({
     className,
     icon,
     onClick,
+    itemKey,
     ...passProps
 }) {
     // tạo button component đa năng với nhiều style khác nhau
@@ -49,7 +50,7 @@ function Button({
     });
 
     return (
-        <Component className={classes} {...props}>
+        <Component className={classes} key={itemKey} {...props} >
             {leftIcon}
             <span className={cx('content')}>{children}</span>
             {rightIcon}
