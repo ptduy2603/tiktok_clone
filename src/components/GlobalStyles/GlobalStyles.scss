@@ -5,11 +5,11 @@
     // declare variables
     --primary-color: #fe2c55;
     --text-color: #161823;
-    --black : #000;
+    --black: #000;
     --white-color: #fff;
     --header-height: 60px;
     --inner-header-width: 1150px;
-    --header-layout-horizontal-space : 24px;
+    --header-layout-horizontal-space: 24px;
 }
 
 html {
@@ -18,7 +18,7 @@ html {
 }
 
 * {
-    list-style: none;  
+    list-style: none;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -30,6 +30,7 @@ body {
     line-height: 1.5;
     text-rendering: optimizeSpeed;
     color: var(--text-color);
+    overflow-y: overlay;
 }
 
 .btn:active {
@@ -37,8 +38,9 @@ body {
     transition: all ease-in 0.1s;
 }
 
-button, input , [tabindex]
-{
+button,
+input,
+[tabindex] {
     outline: none;
     border: none;
 }
@@ -51,13 +53,30 @@ a[href] {
 // custom tippy tooltip
 body .tippy-box {
     border-radius: 8px;
-    background-color: rgba(84,84,84,0.92);
+    background-color: rgba(84, 84, 84, 0.92);
     font-weight: 600;
     line-height: 2rem;
     font-size: 1.6rem;
     pointer-events: all;
 }
 
+//scrollbar CSS
+html *::-webkit-scrollbar {
+    border-radius: 0;
+    width: 8px;
+}
+
+html *::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(22, 24, 35, 0.06);
+}
+
+html *::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+// config Tippy CSS
 .tippy-content {
     display: flex;
     align-items: center;
@@ -65,7 +84,7 @@ body .tippy-box {
 }
 
 .tippy-arrow::before {
-    color: rgba(84,84,84,0.92);
+    color: rgba(84, 84, 84, 0.92);
     transform-origin: center bottom;
     top: -8px;
 }

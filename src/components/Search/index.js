@@ -42,7 +42,11 @@ function Search() {
     //heandler functions
     const handleChangeInput = (e) => {
         // trước khi set phải kiểm tra và định dạng lại dữ liệu tìm kiếm theo đúng chuẩn
-        setSearchInput(e.target.value);
+        // xử lí không cho dấu cách đầu tiên
+        const search = e.target.value;
+        if (!search.startsWith(' ')) {
+            setSearchInput(search);
+        }
     };
 
     const handleClearSearch = () => {
@@ -60,6 +64,7 @@ function Search() {
             <HeadlessTippy
                 visible={searchResult.length > 0 && showResult}
                 interactive
+                appendTo={document.body}
                 render={(attrs) => (
                     <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                         <PopperWrapper>
@@ -103,7 +108,7 @@ function Search() {
                 </div>
             </HeadlessTippy>
 
-            <button className={cx('btn-search', 'btn')}>
+            <button className={cx('btn-search', 'btn')} onMouseDown={(event) => event.preventDefault()}>
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>
         </div>
