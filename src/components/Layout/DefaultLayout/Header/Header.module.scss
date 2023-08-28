@@ -20,6 +20,7 @@ $userAvatarSize: 32px;
     align-items: center;
     width: var(--inner-header-width);
     margin: 0 auto;
+    max-width: 100%;
 }
 
 .header__logo a {
