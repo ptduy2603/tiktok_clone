@@ -1,10 +1,10 @@
 import HeadlessTippy from '@tippyjs/react/headless';
-import { faCircleXmark, faSpinner, faMagnifyingGlass, faL } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faSpinner, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames/bind';
 
-import * as searchServices from '~/apiServices/searchService.js';
+import * as searchServices from '~/services/searchService.js';
 import AccountItem from '~/components/AccountItem/';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import styles from './Search.module.scss';
@@ -16,33 +16,31 @@ function Search() {
     // states
     const [searchInput, setSearchInput] = useState('');
     const [searchResult, setSearchResult] = useState([]);
-    const [showResult, setShowResult] = useState(true);
+    const [showResult, setShowResult] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    const debounced = useDebounce(searchInput, 500);
+    const debouncedValue = useDebounce(searchInput, 500);
 
     const inputRef = useRef();
 
     useEffect(() => {
-        if (!debounced.trim()) {
+        if (!debouncedValue.trim()) {
             setSearchResult([]);
             return;
         }
 
         const fetchApi = async () => {
             setLoading(true);
-            const result = await searchServices.search(debounced);
+            const result = await searchServices.search(debouncedValue);
             setSearchResult(result);
             setLoading(false);
         };
 
         fetchApi();
-    }, [debounced]);
+    }, [debouncedValue]);
 
-    //heandler functions
+    //handler functions
     const handleChangeInput = (e) => {
-        // trước khi set phải kiểm tra và định dạng lại dữ liệu tìm kiếm theo đúng chuẩn
-        // xử lí không cho dấu cách đầu tiên
         const search = e.target.value;
         if (!search.startsWith(' ')) {
             setSearchInput(search);

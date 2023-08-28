@@ -1,13 +1,10 @@
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { publicRouters, privateRoutes } from '~/routes/index.js';
 import { DefaultLayout } from '~/components/Layout';
 import React from 'react';
 
 function App() {
-    // states về theme và language
-    const [currentLanguage, setCurrentLanguage] = useState('vi')
-
     return (
         <Router>
             <div className="app">

@@ -24,7 +24,7 @@ import Menu from '~/components/Popper/Menu';
 import { InboxIcon, MessageIcon } from '~/components/Icons';
 import Image from '~/components/Image';
 import styles from './Header.module.scss';
-import routesConig from '~/config/routes.js';
+import config from '~/config';
 
 const cx = classNames.bind(styles);
 const currentUser = true;
@@ -115,7 +115,7 @@ function Header() {
             <div className={cx('inner')}>
                 {/* Logo section */}
                 <div className={cx('header__logo')}>
-                    <Link to={routesConig.home}>
+                    <Link to={config.routes.home}>
                         <img src={images.logo} alt="Tiktok"></img>
                     </Link>
                 </div>
